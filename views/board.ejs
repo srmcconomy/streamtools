@@ -1,0 +1,56 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>OoT Bingo</title>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/js/seedrandom.js"></script>
+    <script src="/js/goal-list.js"></script>
+    <script src="/js/generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/board.css">
+</head>
+<body>
+    <table class="bingo bingo-element <%= boardHidden ? 'hidden' : '' %>" data-seed="<%= seed %>">
+		<tr>
+			<td id="square0" class="square row0 col0 tlbr"></td>
+			<td id="square1" class="square row0 col1"></td>
+			<td id="square2" class="square row0 col2"></td>
+			<td id="square3" class="square row0 col3"></td>
+			<td id="square4" class="square row0 col4 bltr"></td>
+		</tr>
+		<tr>
+			<td id="square5" class="square row1 col0"></td>
+			<td id="square6" class="square row1 col1 tlbr"></td>
+			<td id="square7" class="square row1 col2"></td>
+			<td id="square8" class="square row1 col3 bltr"></td>
+			<td id="square9" class="square row1 col4"></td>
+		</tr>
+		<tr>
+			<td id="square10" class="square row2 col0"></td>
+			<td id="square11" class="square row2 col1"></td>
+			<td id="square12" class="square row2 col2 tlbr bltr"></td>
+			<td id="square13" class="square row2 col3"></td>
+			<td id="square14" class="square row2 col4"></td>
+		</tr>
+		<tr>
+			<td id="square15" class="square row3 col0"></td>
+			<td id="square16" class="square row3 col1 bltr"></td>
+			<td id="square17" class="square row3 col2"></td>
+			<td id="square18" class="square row3 col3 tlbr"></td>
+			<td id="square19" class="square row3 col4"></td>
+		</tr>
+		<tr>
+			<td id="square20" class="square row4 col0 bltr"></td>
+			<td id="square21" class="square row4 col1"></td>
+			<td id="square22" class="square row4 col2"></td>
+			<td id="square23" class="square row4 col3"></td>
+			<td id="square24" class="square row4 col4 tlbr"></td>
+		</tr>
+</table>
+
+<script src="/js/board.js"></script>
+
+</body>
+</html>
