@@ -104,7 +104,7 @@ function reload() {
 }
 
 app.post('/api/reload', (req, res) => {
-  reload.then(() => {
+  reload().then(() => {
     res.status(200).send();
   })
 });
@@ -125,7 +125,7 @@ app.get('/board', (req, res) => {
 })
 
 app.get('/row', (req, res) => {
-  reload.then(() => {
+  reload().then(() => {
     res.render('row', { row: status.row });
   });
 })
