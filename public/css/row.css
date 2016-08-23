@@ -60,7 +60,7 @@ td:hover {
   -webkit-filter: grayscale(100%);
 }
 th {
-    height: 40px;
+    height: 44px;
     background: #1448b3;
     box-shadow: inset 0px 0px 100px rgba(0, 0, 0, .6);
     -moz-box-shadow: inset 0px 0px 100px rgba(0, 0, 0, .6);
