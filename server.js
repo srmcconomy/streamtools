@@ -10,7 +10,36 @@ const defaultStatus = {
   finalTime: -3,
   seed: -1,
   boardHidden: true,
-  row: {}
+  row: {
+    name: '',
+    goals: [
+      {
+        name: '',
+        class: '',
+        extra: ''
+      },
+      {
+        name: '',
+        class: '',
+        extra: ''
+      },
+      {
+        name: '',
+        class: '',
+        extra: ''
+      },
+      {
+        name: '',
+        class: '',
+        extra: ''
+      },
+      {
+        name: '',
+        class: '',
+        extra: ''
+      }
+    ]
+  }
 }
 
 
@@ -48,8 +77,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.post('/api/reload', (req, res) => {
-  getRaces().then(srl => {
+function reload() {
+  return getRaces().then(srl => {
     for (let race of srl.races) {
       for (let entrant in race.entrants) {
         if (entrant === 'prettybigjoe') {
@@ -71,8 +100,13 @@ app.post('/api/reload', (req, res) => {
     }
     status = defaultStatus;
     io.emit('status', status);
-    res.status(200).send();
   }).catch(console.log)
+}
+
+app.post('/api/reload', (req, res) => {
+  reload.then(() => {
+    res.status(200).send();
+  })
 });
 
 app.post('/api/setrow', (req, res) => {
@@ -91,7 +125,9 @@ app.get('/board', (req, res) => {
 })
 
 app.get('/row', (req, res) => {
-  res.render('row', { row: status.row });
+  reload.then(() => {
+    res.render('row', { row: status.row });
+  });
 })
 
 server.listen(process.env.PORT || 8082)
