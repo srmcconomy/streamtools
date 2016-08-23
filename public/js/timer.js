@@ -1,5 +1,5 @@
 
-var socket = io('http://localhost:3000')
+var socket = io('http://streamtools.prettybigjoe.me')
 socket.on('status', data => {
   if (data.finalTime > 0) {
     ended(data.finalTime);

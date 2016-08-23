@@ -1,4 +1,4 @@
-var socket = io('http://localhost:3000')
+var socket = io('http://streamtools.prettybigjoe.me')
 socket.on('status', data => {
   setSeed(data.seed);
   if (data.boardHidden) {
