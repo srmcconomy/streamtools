@@ -17,6 +17,7 @@
         <% var goal = row.goals[i] %>
       <tr>
         <td id="goal<%= i %>" class="<%= goal.class %>"><%= goal.name %></td>
+        <%= goal.extra %>
       </tr>
       <% } %>
     </tbody>
