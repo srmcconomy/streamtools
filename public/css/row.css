@@ -26,7 +26,7 @@ td {
     text-align: center;
     padding: 0 10px;
     height: 19%;
-    border-top: 2px #666 solid;
+    border-top: 4px #666 solid;
     box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .6);
     -moz-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .6);
     -webkit-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .6)
