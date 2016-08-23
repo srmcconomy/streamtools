@@ -93,4 +93,4 @@ app.get('/row', (req, res) => {
   res.render('row', { row: status.row });
 })
 
-server.listen(node.env.PORT || 8082)
+server.listen(process.env.PORT || 8082)
