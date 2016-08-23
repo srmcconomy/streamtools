@@ -47,6 +47,14 @@ td:hover {
 .redsquare:hover {
     background: #702
 }
+.item {
+  display: inline-block;
+  background-size: contain;
+  height: 64px;
+  width: 64px;
+  margin: -10px -2px;
+  background-position: center center;
+}
 th {
     height: 40px;
     background: #1448b3;
