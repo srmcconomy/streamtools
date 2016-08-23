@@ -55,6 +55,10 @@ td:hover {
   margin: -10px -2px;
   background-position: center center;
 }
+.toggle {
+  opacity: 0.5;
+  -webkit-filter: grayscale(100%);
+}
 th {
     height: 40px;
     background: #1448b3;
