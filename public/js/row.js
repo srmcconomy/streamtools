@@ -4,6 +4,7 @@ socket.on('status', data => {
 })
 
 function setRow(row) {
+  $('th').html(row.name);
   for (var i = 0; i < 5; i++) {
     $('#goal' + i).html(row.goals[i].name)
     $('#goal' + i).removeClass();
