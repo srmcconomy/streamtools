@@ -16,8 +16,8 @@
       <% for (var i = 0; i < 5; i++) { %>
         <% var goal = row.goals[i] %>
       <tr>
-        <td id="goal<%= i %>" class="<%= goal.class %>"><%= goal.name %></td>
-        <%- goal.extra %>
+        <td id="goal<%= i %>" class="<%= goal.class %>"><%= goal.name %>
+        <%- goal.extra %></td>
       </tr>
       <% } %>
     </tbody>
