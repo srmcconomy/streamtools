@@ -20,7 +20,9 @@ line-height: 40px;
     height: 100%;
     font-size: 38px;
     border-collapse: collapse;
-    background: rgba(0,0,0,0)
+    background: rgba(0,0,0,0);
+    opacity: 1;
+    transition: opacity 2s ease-in-out;
 }
 td {
     text-align: center;
@@ -30,6 +32,9 @@ td {
     box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .6);
     -moz-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .6);
     -webkit-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, .6)
+}
+.hidden {
+  opacity: 0;
 }
 td:hover {
     background: #012;

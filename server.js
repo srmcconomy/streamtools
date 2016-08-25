@@ -46,7 +46,7 @@ const defaultStatus = {
 
 let status = defaultStatus;
 
-const regex = /speedrunslive.com\/tools\/oot-bingo\/?\?seed=(\d+)/
+const regex = /speedrunslive\.com\/tools\/oot-bingo\/?\?mode=normal(?:&amp;|&)seed=([0-9]+)/
 
 function getRaces() {
   return new Promise(resolve => {
