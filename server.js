@@ -44,7 +44,7 @@ const defaultStatus = {
 
 
 
-let status = defaultStatus;
+let status = JSON.parse(JSON.stringify(defaultStatus));
 
 const regex = /speedrunslive\.com\/tools\/oot-bingo\/?\?mode=normal(?:&amp;|&)seed=([0-9]+)/
 
@@ -98,7 +98,7 @@ function reload() {
         }
       }
     }
-    status = defaultStatus;
+    status = JSON.parse(JSON.stringify(defaultStatus));
     io.emit('status', status);
   }).catch(console.log)
 }
