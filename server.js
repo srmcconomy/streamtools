@@ -106,7 +106,7 @@ function reload() {
         if (entrant === 'prettybigjoe') {
           status.finalTime = race.entrants[entrant].time * 1000;
           status.startTime = race.time * 1000;
-          if (race.entrants[entrant].place === 9994) status.place = '';
+          if (race.entrants[entrant].place > 9000) status.place = '';
           else status.place = getPlaceText(race.entrants[entrant].place)
           if (status.startTime < 0) {
             status = JSON.parse(JSON.stringify(defaultStatus));
