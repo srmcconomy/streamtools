@@ -1,6 +1,23 @@
 
 var socket = io('/timer')
 socket.on('time', data => {
+  var placeClass = ''
+  switch(place) {
+    case '1st':
+      placeClass = 'gold'
+      break;
+    case '2nd':
+      placeClass = 'silver'
+      break;
+    case '3rd':
+      placeClass = 'bronze'
+      break;
+    case '':
+      placeClass = 'hidden'
+      break;
+  }
+  document.getElementsByClassName('place')[0].innerHTML = data.place;
+  document.getElementsByClassName('place')[0].className = 'place ' + placeClass
   if (data.finalTime > 0) {
     ended(data.finalTime);
   } else if (data.startTime > 0) {
