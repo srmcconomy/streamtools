@@ -150,7 +150,7 @@ app.post('/api/setboard', (req, res) => {
 
 app.get('/timer', (req, res) => {
   reload().then(() => {
-    res.render('timer', { startTime: status.startTime, finalTime: status.finalTime });
+    res.render('timer', { startTime: status.startTime, finalTime: status.finalTime, place: status.place });
   });
 })
 
