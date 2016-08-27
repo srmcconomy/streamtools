@@ -2,7 +2,7 @@
 var socket = io('/timer')
 socket.on('time', data => {
   var placeClass = ''
-  switch(place) {
+  switch(data.place) {
     case '1st':
       placeClass = 'gold'
       break;
