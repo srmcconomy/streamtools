@@ -1,6 +1,6 @@
 var socket = io('/board')
 socket.on('board', data => {
-  setBoard(data.board);
+  setBoard(data);
   $('table.bingo').removeClass('hidden')
 })
 
