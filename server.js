@@ -103,7 +103,7 @@ function reload() {
   return getRaces().then(srl => {
     for (let race of srl.races) {
       for (let entrant in race.entrants) {
-        if (entrant === 'digshake') {
+        if (entrant === 'prettybigjoe') {
           status.finalTime = race.entrants[entrant].time * 1000;
           status.startTime = race.time * 1000;
           if (race.entrants[entrant].place === 9994) status.place = '';
