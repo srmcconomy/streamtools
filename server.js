@@ -83,19 +83,37 @@ app.use(function(req, res, next) {
   next();
 });
 
+function getPlaceText(place) {
+  switch(place % 10) {
+    case 1:
+      if (place % 100 === 11) return `${place}th`;
+      return `${place}st`
+    case 2:
+      if (place % 100 === 12) return `${place}th`;
+      return `${place}nd`
+    case 3:
+      if (place % 100 === 13) return `${place}th`;
+      return `${place}rd`
+    default:
+      return `${place}th`
+  }
+}
+
 function reload() {
   return getRaces().then(srl => {
     for (let race of srl.races) {
       for (let entrant in race.entrants) {
-        if (entrant === 'prettybigjoe') {
+        if (entrant === 'digshake') {
           status.finalTime = race.entrants[entrant].time * 1000;
           status.startTime = race.time * 1000;
+          if (race.entrants[entrant].place === 9994) status.place = '';
+          else status.place = getPlaceText(race.entrants[entrant].place)
           if (status.startTime < 0) {
             status = JSON.parse(JSON.stringify(defaultStatus));
             namespaces.row.emit('hide');
             namespaces.board.emit('hide');
           }
-          namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime })
+          namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime, place: status.place })
           res.status(200).send();
           return;
         }

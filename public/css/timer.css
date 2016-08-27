@@ -29,3 +29,23 @@ span:empty + span, span:empty {
   margin: 0 5px;
   vertical-align: text-top;
 }
+
+.hidden {
+  opacity: 0
+}
+
+.place {
+  position: absolute;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.gold {
+  color: #f7e279;
+}
+.silver {
+  color: #bec7d2;
+}
+.bronze {
+  color: #e09456;
+}
