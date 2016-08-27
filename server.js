@@ -90,20 +90,21 @@ function reload() {
         if (entrant === 'prettybigjoe') {
           status.finalTime = race.entrants[entrant].time * 1000;
           status.startTime = race.time * 1000;
-          namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime })
           if (status.startTime < 0) {
-            status.rowHidden = true;
-            status.boardHidden = true;
+            status = JSON.parse(JSON.stringify(defaultStatus));
             namespaces.row.emit('hide');
             namespaces.board.emit('hide');
           }
+          namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime })
           res.status(200).send();
           return;
         }
       }
     }
     status = JSON.parse(JSON.stringify(defaultStatus));
-    io.emit('status', status);
+    namespaces.row.emit('hide');
+    namespaces.board.emit('hide');
+    namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime })
   }).catch(console.log)
 }
 

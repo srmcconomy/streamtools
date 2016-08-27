@@ -1,6 +1,6 @@
 var socket = io('/row')
 socket.on('row', data => {
-  setRow(data.row);
+  setRow(data);
 })
 
 socket.on('hide', () => {
