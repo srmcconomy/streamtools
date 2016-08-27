@@ -1,14 +1,15 @@
-var socket = io('http://streamtools.prettybigjoe.me')
-socket.on('status', data => {
+var socket = io('/row')
+socket.on('row', data => {
   setRow(data.row);
 })
 
+socket.on('hide', () => {
+  $('table').addClass('hidden');
+})
+
 function setRow(row) {
-  if (row.name === '') {
-    $('table').addClass('hidden')
-  } else {
-    $('table').removeClass('hidden');
-  }
+  $('table').removeClass('hidden');
+
   $('th').html(row.name);
   for (var i = 0; i < 5; i++) {
     $('#goal' + i).html(row.goals[i].name)

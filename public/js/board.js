@@ -1,21 +1,15 @@
-var socket = io('http://streamtools.prettybigjoe.me')
-socket.on('status', data => {
-  setSeed(data.seed);
-  if (data.boardHidden) {
-    $('table.bingo').addClass('hidden')
-  } else {
-    $('table.bingo').removeClass('hidden')
-  }
+var socket = io('/board')
+socket.on('board', data => {
+  setBoard(data.board);
+  $('table.bingo').removeClass('hidden')
 })
 
-window.onload = function() {
-  setSeed($('table.bingo').data('seed'))
-}
+socket.on('hide', () => {
+  $('table.bingo').addClass('hidden')
+});
 
-function setSeed(seed) {
-  seed = ''+seed;
-  var board = ootBingoGenerator(bingoList, { seed });
-  for (var i = 1; i <= 25; i++) {
-    $('#square' + (i - 1)).html(board[i].name)
+function setBoard(board) {
+  for (var i = 0; i < 25; i++) {
+    $('#square' + i).html(board[i])
   }
 }

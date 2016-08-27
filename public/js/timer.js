@@ -1,6 +1,6 @@
 
-var socket = io('http://streamtools.prettybigjoe.me')
-socket.on('status', data => {
+var socket = io('/timer')
+socket.on('time', data => {
   if (data.finalTime > 0) {
     ended(data.finalTime);
   } else if (data.startTime > 0) {

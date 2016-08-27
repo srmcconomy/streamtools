@@ -10,6 +10,7 @@ const defaultStatus = {
   finalTime: -3,
   seed: -1,
   boardHidden: true,
+  rowHidden: true,
   row: {
     name: '',
     goals: [
@@ -39,10 +40,15 @@ const defaultStatus = {
         extra: ''
       }
     ]
-  }
+  },
+  board: []
 }
 
-
+const namespaces = {
+  row: io.of('/row'),
+  board: io.of('/board'),
+  timer: io.of('/timer')
+}
 
 let status = JSON.parse(JSON.stringify(defaultStatus));
 
@@ -84,15 +90,13 @@ function reload() {
         if (entrant === 'prettybigjoe') {
           status.finalTime = race.entrants[entrant].time * 1000;
           status.startTime = race.time * 1000;
-          let r = regex.exec(race.goal)
-          if (r) {
-            let seed = +r[1];
-            if (status.seed !== seed) {
-              status.boardHidden = false;
-              status.seed = seed;
-            }
+          namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime })
+          if (status.startTime < 0) {
+            status.rowHidden = true;
+            status.boardHidden = true;
+            namespaces.row.emit('hide');
+            namespaces.board.emit('hide');
           }
-          io.emit('status', status);
           res.status(200).send();
           return;
         }
@@ -112,21 +116,34 @@ app.post('/api/reload', (req, res) => {
 app.post('/api/setrow', (req, res) => {
   status.row = req.body;
   status.boardHidden = true;
-  io.emit('status', status);
+  status.rowHidden = false;
+  namespaces.board.emit('hide')
+  namespaces.row.emit('row', status.row);
+  res.status(200).send();
+});
+
+app.post('/api/setboard', (req, res) => {
+  status.board = req.body;
+  status.boardHidden = false;
+  namespaces.board.emit('board', status.board);
   res.status(200).send();
 });
 
 app.get('/timer', (req, res) => {
-  res.render('timer', { startTime: status.startTime, finalTime: status.finalTime });
+  reload().then(() => {
+    res.render('timer', { startTime: status.startTime, finalTime: status.finalTime });
+  });
 })
 
 app.get('/board', (req, res) => {
-  res.render('board', { seed: status.seed, boardHidden: status.boardHidden });
+  reload().then(() => {
+    res.render('board', { board: status.board, hidden: status.boardHidden });
+  });
 })
 
 app.get('/row', (req, res) => {
   reload().then(() => {
-    res.render('row', { row: status.row });
+    res.render('row', { row: status.row, hidden: status.rowHidden });
   });
 })
 
