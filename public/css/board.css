@@ -79,6 +79,7 @@ table.bingo {
   border-spacing: 0px;
   opacity: 1;
   transition: opacity 2s ease-in-out;
+  margin: auto;
 }
 
 table.bingo.hidden {
