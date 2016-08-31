@@ -114,7 +114,6 @@ function reload() {
             namespaces.board.emit('hide');
           }
           namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime, place: status.place })
-          res.status(200).send();
           return;
         }
       }
