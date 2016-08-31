@@ -122,7 +122,7 @@ function reload() {
     status = JSON.parse(JSON.stringify(defaultStatus));
     namespaces.row.emit('hide');
     namespaces.board.emit('hide');
-    namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime })
+    namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime, place: status.place })
   }).catch(console.log)
 }
 
