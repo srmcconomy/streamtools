@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 const defaultStatus = {
   startTime: -1,
   finalTime: -3,
-  seed: -1,
+  place: '',
   boardHidden: true,
   rowHidden: true,
   row: {
