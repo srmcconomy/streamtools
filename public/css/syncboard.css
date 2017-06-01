@@ -129,11 +129,14 @@ table.bingo tr:last-child td:hover {
   background: #1448b3;
 }*/
 
+.stroke {
+  -webkit-text-stroke: 3px black;
+}
+
 table.bingo tr td {
   box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.6);
   -moz-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.6);
   -webkit-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.6);
-  text-shadow: black 2px 2px 2px, black -2px -2px 2px, black -2px 2px 2px, black 2px -2px 2px;
   font-size: 186%;
   color: #ffffff;
   padding: 0px 6px;
