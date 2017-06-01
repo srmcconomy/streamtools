@@ -223,15 +223,12 @@ app.get('/row', (req, res) => {
   reload().then(() => {
     res.render('row', { row: status.row, hidden: status.rowHidden });
   });
-})
+});
 
-<<<<<<< HEAD
 app.get('/syncboard', (req, res) => {
   reload().then(() => {
     res.render('syncboard', { board: status.sync.board, colours: status.sync.colours });
   });
-})
+});
 
-=======
->>>>>>> e0cbfd5d09bc33886400bd31594c1d5e9bfafc46
 server.listen(process.env.PORT || 8082)
