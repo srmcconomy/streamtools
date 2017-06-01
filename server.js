@@ -196,7 +196,6 @@ app.get('/row', (req, res) => {
 
 app.get('/syncboard', (req, res) => {
   reload().then(() => {
-    console.log(status.sync);
     res.render('syncboard', { board: status.sync.board, colours: status.sync.colours });
   });
 });

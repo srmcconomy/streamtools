@@ -15,10 +15,7 @@
       <% for (var j = 0; j < 5; j++) { %>
         <% var x = i * 5 + j %>
       <td id="square<%= x %>" class="square row<%= i %> col<%= j %> <%= i === j ? 'tlbr' : '' %> <%= i === 5 - j ? 'bltr' : '' %> <%= colours[x] && colours[x].join(' ') %>">
-        <div style="position: relative">
-          <div class="stroke"><%= board[x] ? board[x] : '' %></div>
-          <div style="position: absolute; top: 0; width: 100%"><%= board[x] ? board[x] : '' %></div>
-        </div>
+          <%= board[x] ? board[x] : '' %>
       </td>
       <% } %>
     </tr>
