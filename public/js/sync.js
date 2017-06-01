@@ -12,7 +12,7 @@ socket.on('colours', data => {
 
 function setBoard(board) {
   for (var i = 0; i < 25; i++) {
-    $('#square' + i + ' div div').html(board[i])
+    $('#square' + i).html(board[i])
   }
 }
 
