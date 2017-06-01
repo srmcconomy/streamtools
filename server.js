@@ -167,8 +167,8 @@ app.post('/api/setsynccolours', (req, res) => {
 });
 
 app.post('/api/setsyncplayers', (req, res) => {
-  status.sync.players = req.players;
-  namespaces.sync.emit('colours', status.sync.players);
+  status.sync.players = req.body;
+  namespaces.sync.emit('players', status.sync.players);
   res.status(200).send();
 });
 
