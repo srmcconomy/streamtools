@@ -126,7 +126,11 @@ function reload() {
     }
     namespaces.row.emit('hide');
     namespaces.board.emit('hide');
-    status = JSON.parse(JSON.stringify(defaultStatus));
+    status.startTime = -1;
+    status.finalTime = -3;
+    status.place = '';
+    boardHidden = true;
+    rowHidden = true;
     namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime, place: status.place });
   }).catch(console.log)
 }
