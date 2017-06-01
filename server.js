@@ -41,7 +41,6 @@ const defaultStatus = {
       }
     ]
   },
-<<<<<<< HEAD
   board: [],
   sync: {
     board: [],
@@ -49,20 +48,13 @@ const defaultStatus = {
     players: [],
     lockout: false
   }
-=======
-  board: []
->>>>>>> e0cbfd5d09bc33886400bd31594c1d5e9bfafc46
 }
 
 const namespaces = {
   row: io.of('/row'),
   board: io.of('/board'),
-<<<<<<< HEAD
   timer: io.of('/timer'),
   sync: io.of('/sync')
-=======
-  timer: io.of('/timer')
->>>>>>> e0cbfd5d09bc33886400bd31594c1d5e9bfafc46
 }
 
 let status = JSON.parse(JSON.stringify(defaultStatus));
@@ -73,11 +65,7 @@ function getRaces() {
   return new Promise(resolve => {
     http.get({
       host: 'api.speedrunslive.com',
-<<<<<<< HEAD
-      path: '/race'
-=======
       path: '/races'
->>>>>>> e0cbfd5d09bc33886400bd31594c1d5e9bfafc46
     }, function(res) {
       // Continuously update stream with data
       let body = '';
@@ -120,7 +108,6 @@ function getPlaceText(place) {
 
 function reload() {
   return getRaces().then(srl => {
-<<<<<<< HEAD
     const races = srl.races.filter(race => Object.keys(race.entrants).some(entrant => entrant === 'prettybigjoe'));
     if (races.some(race => race.state === 3 && race.entrants.prettybigjoe.time === -3)) {
       status.startTime = race.time * 1000;
@@ -141,29 +128,6 @@ function reload() {
     namespaces.board.emit('hide');
     status = JSON.parse(JSON.stringify(defaultStatus));
     namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime, place: status.place });
-=======
-    for (let race of srl.races) {
-      for (let entrant in race.entrants) {
-        if (entrant === 'prettybigjoe') {
-          status.finalTime = race.entrants[entrant].time * 1000;
-          status.startTime = race.time * 1000;
-          if (race.entrants[entrant].place > 9000) status.place = '';
-          else status.place = getPlaceText(race.entrants[entrant].place)
-          if (status.startTime < 0) {
-            status = JSON.parse(JSON.stringify(defaultStatus));
-            namespaces.row.emit('hide');
-            namespaces.board.emit('hide');
-          }
-          namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime, place: status.place })
-          return;
-        }
-      }
-    }
-    status = JSON.parse(JSON.stringify(defaultStatus));
-    namespaces.row.emit('hide');
-    namespaces.board.emit('hide');
-    namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime, place: status.place })
->>>>>>> e0cbfd5d09bc33886400bd31594c1d5e9bfafc46
   }).catch(console.log)
 }
 
