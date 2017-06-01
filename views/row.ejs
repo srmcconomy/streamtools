@@ -1,0 +1,27 @@
+<html>
+<head>
+	<!-- Title -->
+	<title>Bingo Popout - SpeedRunsLive</title>
+  <link rel="stylesheet" type="text/css" href="/css/row.css">
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+</head>
+<body>
+	<table class="<%= hidden ? 'hidden' : '' %>">
+    <tbody>
+      <tr>
+        <th><%= row.name %></th>
+      </tr>
+      <% for (var i = 0; i < 5; i++) { %>
+        <% var goal = row.goals[i] %>
+      <tr>
+        <td id="goal<%= i %>" class="<%= goal.class %>"><%= goal.name %>
+        <%- goal.extra %></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <script src="/js/row.js"></script>
+</body></html>

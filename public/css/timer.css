@@ -1,0 +1,51 @@
+body {
+  font-family: FOT-Chiaro Std;
+  background: black;
+  color: white;
+  font-size: 64px;
+  line-height: 64px;
+  -webkit-app-region: drag;
+}
+
+.timer {
+  text-align: right;
+  transform: scale(1) rotate(0deg) translate(0px, 0px) skew(-10deg, 0deg);
+}
+
+.timer.done {
+  color: yellow;
+}
+
+span {
+  margin:0;
+  padding:0;
+}
+
+span:empty + span, span:empty {
+  display: none;
+}
+
+.separator {
+  margin: 0 5px;
+  vertical-align: text-top;
+}
+
+.place.hidden {
+  opacity: 0
+}
+
+.place {
+  position: absolute;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.gold {
+  color: #f7e279;
+}
+.silver {
+  color: #bec7d2;
+}
+.bronze {
+  color: #e09456;
+}
