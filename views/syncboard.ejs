@@ -14,7 +14,7 @@
     <tr>
       <% for (var j = 0; j < 5; j++) { %>
         <% var x = i * 5 + j %>
-      <td id="square<%= x %>" class="square row<%= i %> col<%= j %> <%= i === j ? 'tlbr' : '' %> <%= i === 5 - j ? 'bltr' : '' %> <%= colours[x].join(' ') %>"><%= board[x] ? board[x] : '' %></td>
+      <td id="square<%= x %>" class="square row<%= i %> col<%= j %> <%= i === j ? 'tlbr' : '' %> <%= i === 5 - j ? 'bltr' : '' %> <%= colours[x] && colours[x].join(' ') %>"><%= board[x] ? board[x] : '' %></td>
       <% } %>
     </tr>
     <% } %>
