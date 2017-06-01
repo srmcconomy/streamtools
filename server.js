@@ -154,7 +154,6 @@ app.post('/api/setboard', (req, res) => {
 });
 
 app.post('/api/setsync', (req, res) => {
-  console.log(req.body);
   status.sync.board = req.body.board;
   status.sync.colours = req.body.colours;
   namespaces.sync.emit('sync', status.sync);
