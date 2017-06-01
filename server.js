@@ -154,13 +154,15 @@ app.post('/api/setboard', (req, res) => {
 });
 
 app.post('/api/setsync', (req, res) => {
-  status.sync = req.sync;
+  console.log(req.body);
+  status.sync.board = req.body.board;
+  status.sync.colours = req.body.colours;
   namespaces.sync.emit('sync', status.sync);
   res.status(200).send();
 });
 
 app.post('/api/setsynccolours', (req, res) => {
-  status.sync.colours = req.colours;
+  status.sync.colours = req.body;
   namespaces.sync.emit('colours', status.sync.colours);
   res.status(200).send();
 });
