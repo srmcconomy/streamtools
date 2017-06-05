@@ -5,6 +5,25 @@ const server = http.Server(app);
 const io = require('socket.io')(server);
 const bodyParser = require('body-parser')
 
+const names = [
+  {
+    names: ['dave', 'davpat'],
+    twitch: 'tdavpat',
+  }, {
+    names: ['wthh'],
+    twitch: 'whatthehellshappened',
+  }, {
+    names: ['senn'],
+    twitch: 'senn__',
+  }, {
+    names: ['hyperion'],
+    twitch: 'hyperion64',
+  }, {
+    names: ['mike'],
+    twitch: 'mikekatz45'
+  }
+];
+
 const defaultStatus = {
   startTime: -1,
   finalTime: -3,
@@ -109,14 +128,16 @@ function getPlaceText(place) {
 function reload() {
   return getRaces().then(srl => {
     const races = srl.races.filter(race => Object.keys(race.entrants).some(entrant => entrant === 'prettybigjoe'));
-    if (races.some(race => race.state === 3 && race.entrants.prettybigjoe.time === -3)) {
+    let race = races.find(r => r.state === 3 && r.entrants.prettybigjoe.time === -3);
+    if (race) {
       status.startTime = race.time * 1000;
       status.finalTime = -1;
       status.place = '';
       namespaces.timer.emit('time', { finalTime: status.finalTime, startTime: status.startTime, place: status.place });
       return;
     }
-    if (races.some(race => race.entrants.prettybigjoe.time > 0 && race.time + race.entrants.time < 600)) {
+    race = races.find(r => r.entrants.prettybigjoe.time > 0 && (Date.now() / 1000) - (r.time + r.entrants.prettybigjoe.time) < 600);
+    if (race) {
       status.startTime = race.time * 1000;
       status.finalTime = race.entrants.prettybigjoe.time * 1000;
       if (race.entrants.prettybigjoe.place > 9000) status.place = '';
@@ -201,3 +222,4 @@ app.get('/syncboard', (req, res) => {
 });
 
 server.listen(process.env.PORT || 8082)
+reload();
